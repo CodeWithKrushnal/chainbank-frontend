@@ -19,6 +19,7 @@ import LogsPage from "@/Features/Admin/Logs/Pages/LogsPage.tsx";
 import DashPage from "@/Features/Admin/Dash/Page/DashPage.tsx";
 import TransactionLogs from "@/Features/Admin/TransactionLogs/Pages/TransactionLogs.tsx";
 import LandingPage from "@/Features/Landing/Pages/LandingPage.tsx";
+import Terms from "@/Features/Terms/Pages/Terms.tsx";
 
 const AppRoutes: React.FC = () => {
     return (<>
@@ -27,6 +28,7 @@ const AppRoutes: React.FC = () => {
                     <Route path="/" element={<LandingPage/>}/>
                     <Route path={import.meta.env.VITE_SIGN_UP} element={<SignUpPage/>}/>
                     <Route path={import.meta.env.VITE_SIGN_IN} element={<SignInPage/>}/>
+                    <Route path={import.meta.env.VITE_TERMS} element={<Terms/>}/>
                     <Route path={import.meta.env.VITE_RESET_PASSWORD} element={<ResetPasswordPage/>}/>
                     <Route path={import.meta.env.VITE_HOME}
                            element={<ProtectedRoute><MainLayout><HomePage/></MainLayout></ProtectedRoute>}/>
