@@ -31,7 +31,8 @@ const AppRoutes: React.FC = () => {
                     <Route path={import.meta.env.VITE_TERMS} element={<Terms/>}/>
                     <Route path={import.meta.env.VITE_RESET_PASSWORD} element={<ResetPasswordPage/>}/>
                     <Route path={import.meta.env.VITE_HOME}
-                           element={<ProtectedRoute><MainLayout><HomePage/></MainLayout></ProtectedRoute>}/>
+                           element={
+                               <ProtectedRoute><MainLayout><HomePage/></MainLayout></ProtectedRoute>}/>
                     <Route path={import.meta.env.VITE_PASSBOOK}
                            element={<ProtectedRoute><MainLayout><PassBookPage/></MainLayout></ProtectedRoute>}/>
                     <Route path={import.meta.env.VITE_PROFILE}

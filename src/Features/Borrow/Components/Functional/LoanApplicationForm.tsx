@@ -62,7 +62,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onSuccess }) 
                     <Input
                         type="number"
                         name="amount"
-                        value={formData.amount}
+                        value={formData["amount"]}
                         onChange={handleChange}
                         required
                         className="border p-2 w-full"

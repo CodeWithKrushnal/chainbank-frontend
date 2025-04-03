@@ -12,7 +12,7 @@ const BalanceCardView = ({loading, error, balance}: {
 
                 <div className="flex items-center justify-end">
                     <p className="text-4xl font-medium text-right text-gray-700">
-                        {loading ? 'Loading...' : error ? 'Error loading balance' : `ETH ${balance}`}
+                        {loading ? 'Loading...' : error ? 'Error loading balance' : `ETH ${balance?.substring(0, 9)}`}
                     </p>
                 </div>
             </div>

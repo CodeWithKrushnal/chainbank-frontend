@@ -1,126 +1,116 @@
-// src/components/SignUpFormView.tsx
 import React from 'react';
-import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/input.tsx";
-import {Button} from "@/components/ui/button.tsx";
+import {UseFormReturn} from 'react-hook-form';
+import {Input} from '@/components/ui/input.tsx';
+import {Button} from '@/components/ui/button.tsx';
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 
 interface SignUpFormViewProps {
-    formData: {
+    form: UseFormReturn<{
         username: string;
         email: string;
         password: string;
         full_name: string;
         dob: string;
-        role: string;
-        email_verification_token: string;
-    };
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+        email_verification_token?: string;
+    }>;
     handleGetToken: () => void;
     handleSubmit: (e: React.FormEvent) => void;
 }
 
 const SignUpFormView: React.FC<SignUpFormViewProps> = ({
-                                                           formData,
-                                                           handleChange,
+                                                           form,
                                                            handleGetToken,
-                                                           handleSubmit,
-                                                       }) => {
+                                                           handleSubmit
+                                                       }: SignUpFormViewProps): React.ReactNode => {
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Username:</Label>
-                    <Input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Email:</Label>
-                    <Input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    <Button className="mt-4" variant="outline" onClick={handleGetToken}>
-                        Get Token
-                    </Button>
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Password:</Label>
-                    <Input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Full Name:</Label>
-                    <Input
-                        type="text"
-                        name="full_name"
-                        value={formData.full_name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Date of Birth:</Label>
-                    <Input
-                        type="date"
-                        name="dob"
-                        value={formData.dob}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Role:</Label>
-                    <Input
-                        type="text"
-                        name="role"
-                        value={formData.role}
-                        onChange={handleChange}
-                        readOnly
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                    <Label>Email Verification Token:</Label>
-                    <Input
-                        type="text"
-                        name="email_verification_token"
-                        value={formData.email_verification_token}
-                        onChange={handleChange}
-                    />
-                </div>
-            </div>
-            <div className="flex flex-col gap-6">
-                <div className="items-center text-center justify-center gap-2">
-                    <Button type="submit" className="w-full">
-                        Sign Up
-                    </Button>
-                </div>
-            </div>
-        </form>
+        <Form {...form}>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <FormField
+                    control={form.control}
+                    name="username"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Username:</FormLabel>
+                            <FormControl>
+                                <Input {...field} required/>
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Email:</FormLabel>
+                            <FormControl>
+                                <Input {...field} required/>
+                            </FormControl>
+                            <FormMessage/>
+                            <Button className="mt-4" variant="outline" onClick={handleGetToken}>
+                                Get Token
+                            </Button>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Password:</FormLabel>
+                            <FormControl>
+                                <Input type="password" {...field} required/>
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="full_name"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Full Name:</FormLabel>
+                            <FormControl>
+                                <Input {...field} required/>
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="dob"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Date of Birth:</FormLabel>
+                            <FormControl>
+                                <Input type="date" {...field} required/>
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="email_verification_token"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Email Verification Token:</FormLabel>
+                            <FormControl>
+                                <Input {...field} />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit" className="w-full">
+                    Sign Up
+                </Button>
+            </form>
+        </Form>
     );
 };
 

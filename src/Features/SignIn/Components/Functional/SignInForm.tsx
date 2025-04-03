@@ -30,7 +30,7 @@ const SignInForm: React.FC = () => {
         e.preventDefault();
 
         try {
-            toast.loading("Signing You In...")
+            const loadingToast: string | number = toast.loading("Signing You In...")
             const response = await post<{ login_token: string }>(import.meta.env.VITE_SIGN_IN_API, formData);
             dispatch(setAuthToken(response.login_token));
 
@@ -42,18 +42,14 @@ const SignInForm: React.FC = () => {
                 email: string;
                 wallet_id: string;
                 role: number;
-            }>('/api/user', {}, {
-                headers: {
-                    Authorization: `Bearer ${response.login_token}`,
-                },
-            });
+            }>('/api/user');
 
             dispatch(setUser({
                 ...userResponse,
                 avatar: 'https://github.com/shadcn.png', // Hardcoded avatar
             }));
-            toast.dismiss()
             toast.success("SignIn Successful!")
+            toast.dismiss(loadingToast)
             navigate(import.meta.env.VITE_HOME)
 
         } catch (error) {

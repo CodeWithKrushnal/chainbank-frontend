@@ -41,7 +41,7 @@ const LoanApplicationCardView: React.FC<LoanApplicationCardViewProps> = ({
             </span>
             <div className="grid grid-cols-3 gap-4">
                 <div>
-                    <p className="text-gray-700"><strong>Amount:</strong> ${loan.amount.toLocaleString()}</p>
+                    <p className="text-gray-700"><strong>Amount:</strong> ${loan.amount?.toLocaleString()}</p>
                     <p className="text-gray-700"><strong>Interest Rate:</strong> {loan.interest_rate}%</p>
                     <p className="text-gray-700"><strong>Term:</strong> {loan.term_months} months</p>
                 </div>

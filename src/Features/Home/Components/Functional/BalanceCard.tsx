@@ -11,13 +11,10 @@ const BalanceCard = () => {
     const balance = useSelector((state: RootState) => state.balance.balance);
     const loading = useSelector((state: RootState) => state.balance.loading);
     const error = useSelector((state: RootState) => state.balance.error);
-    const authToken = useSelector((state: RootState) => state.auth.authToken);
 
     useEffect(() => {
-        if (authToken) {
-            dispatch(fetchBalance(authToken));
-        }
-    }, [authToken, dispatch]);
+        dispatch(fetchBalance());
+    }, [dispatch]);
 
     return (
         <BalanceCardView loading={loading} error={error} balance={balance}/>

@@ -54,10 +54,10 @@ const BorrowApplicationCard: React.FC<BorrowApplicationCardProps> = ({applicatio
 
     return (
         <Card className="p-4 shadow-none rounded-2xl hover:shadow-md transition-shadow duration-300">
-      <span>
-        <h2 className="text-2xl font-medium mb-4 inline-block">ETH: {application.amount}</h2>
-        <span className="float-right"><p className="text-gray-500 text-sm">{application.application_id}</p></span>
-      </span>
+          <span>
+            <h2 className="text-2xl font-medium mb-4 inline-block">ETH: {application.amount}</h2>
+            <span className="float-right"><p className="text-gray-500 text-sm">{application.application_id}</p></span>
+          </span>
             <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <p className="text-gray-700"><strong>Amount:</strong> ${application.amount.toLocaleString()}</p>
@@ -75,7 +75,7 @@ const BorrowApplicationCard: React.FC<BorrowApplicationCardProps> = ({applicatio
             <div className="grid grid-cols-2 gap-4 mb-4">
                 {offers && offers.length > 0 ? (
                     offers
-                        .filter((offer) => offer.Status == "Open" && application.status=="open")
+                        .filter((offer) => offer.Status == "Open" && application.status == "open")
                         .map((offer) => (
                             <OfferCard
                                 key={offer.OfferID}

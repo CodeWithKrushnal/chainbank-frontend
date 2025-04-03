@@ -36,14 +36,10 @@ export const {setBalance, setLoading, setError} = balanceSlice.actions;
 
 export default balanceSlice.reducer;
 
-export const fetchBalance = (authToken: string) => async (dispatch:AppDispatch) => {
+export const fetchBalance = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(setLoading(true));
-        const response = await get<{ wallet_id: string; balance: string }>('api/balance', {}, {
-            headers: {
-                Authorization: `Bearer ${authToken}`,
-            },
-        });
+        const response = await get<{ wallet_id: string; balance: string }>('api/balance');
         dispatch(setBalance(response.balance));
     } catch (error) {
         console.error('Error fetching balance:', error);
